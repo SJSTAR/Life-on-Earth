@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+
+@layer base {
+  :root {
+    /* Cosmic dark theme — deep space */
+    --background: 230 45% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 230 40% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 230 45% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Aurora cyan primary */
+    --primary: 188 95% 60%;
+    --primary-foreground: 230 45% 4%;
+    --primary-glow: 188 100% 70%;
+
+    /* Cosmic violet secondary */
+    --secondary: 265 80% 65%;
+    --secondary-foreground: 210 40% 98%;
+    --secondary-glow: 280 95% 75%;
+
+    --muted: 230 30% 14%;
+    --muted-foreground: 215 25% 70%;
+
+    --accent: 320 90% 65%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 40% 22%;
+    --input: 220 40% 18%;
+    --ring: 188 95% 60%;
+
+    --radius: 1.25rem;
+
+    /* Glass surface tokens */
+    --glass-bg: 220 50% 10% / 0.35;
+    --glass-border: 200 100% 80% / 0.18;
+    --glass-highlight: 200 100% 95% / 0.08;
+
+    /* Gradients */
+    --gradient-aurora: linear-gradient(135deg, hsl(188 95% 60%), hsl(265 80% 65%) 55%, hsl(320 90% 65%));
+    --gradient-cosmic: radial-gradient(ellipse at top, hsl(265 80% 25% / 0.5), transparent 60%),
+                       radial-gradient(ellipse at bottom, hsl(188 95% 25% / 0.4), transparent 60%);
+    --gradient-text: linear-gradient(135deg, hsl(0 0% 100%), hsl(188 100% 85%) 50%, hsl(280 95% 85%));
+    --gradient-glow: radial-gradient(circle, hsl(188 100% 70% / 0.4), transparent 70%);
+
+    /* Shadows / glows */
+    --shadow-glow: 0 0 60px hsl(188 100% 70% / 0.35);
+    --shadow-violet: 0 0 80px hsl(280 95% 75% / 0.3);
+    --shadow-card: 0 30px 60px -20px hsl(230 45% 2% / 0.8), 0 0 0 1px hsl(200 100% 80% / 0.08) inset;
+
+    /* Motion */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    background-image: var(--gradient-cosmic);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+  ::selection { background: hsl(var(--primary) / 0.4); color: hsl(var(--foreground)); }
+}
+
+@layer components {
+  .glass {
+    background: hsla(var(--glass-bg));
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border: 1px solid hsla(var(--glass-border));
+    box-shadow: var(--shadow-card);
+  }
+  .glass-strong {
+    background: hsla(220 50% 8% / 0.55);
+    backdrop-filter: blur(32px) saturate(160%);
+    -webkit-backdrop-filter: blur(32px) saturate(160%);
+    border: 1px solid hsla(var(--glass-border));
+    box-shadow: var(--shadow-card);
+  }
+  .text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .text-aurora {
+    background: var(--gradient-aurora);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-feature-settings: "tnum" 1; }
+  .glow-ring {
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.4), 0 0 30px hsl(var(--primary) / 0.35);
+  }
+  .focus-aurora:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--primary));
+  }
+}
+
+@layer utilities {
+  .bg-aurora { background-image: var(--gradient-aurora); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-violet { box-shadow: var(--shadow-violet); }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
